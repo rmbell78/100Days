@@ -45,6 +45,7 @@ def Play():
     for i in range(2):
         p1cards.append(dealer())
         p2cards.append(dealer())
+        i
     while gameover == False:
         p1score = scorer(p1cards)
         p2score = scorer(p2cards)
