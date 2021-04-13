@@ -11,9 +11,9 @@ def menu():
     return difficulty
 
 
-def picknumber():
+def pick_number():
     r = random.choice(range(0, 100))
-    return(r)
+    return r
 
 
 def compare(guess, number):
@@ -27,18 +27,18 @@ def compare(guess, number):
     elif guess == number:
         r = 2
         print('You Got It!')
-    return(r)
+    return r
 
 
 def game():
     difficulty = menu().lower()
-    number = picknumber()
+    number = pick_number()
     comp = ()
     if difficulty == 'easy':
         guesses = 10
     if difficulty == 'hard':
         guesses = 5
-    while guesses > 0 and comp !=2:
+    while guesses > 0 and comp != 2:
         guess = input('Guess a Number: ')
         comp = compare(guess, number)
         guesses -= 1
@@ -47,10 +47,9 @@ def game():
         print('You Ran Out of Guesses!')
 
 
-gameover = False
-while gameover == False:
+game_over = False
+while not game_over:
     game()
     user = input('Play Again? (y/n):')
     if user == 'n':
-        gameover = True
-    
+        game_over = True
