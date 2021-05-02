@@ -3,15 +3,16 @@
 def coffee():
     selection = 'on'
     current_resources = resources
-    current_money = 0
     while selection != 'off':
         selection = input('What Would You Like? (espresso/latte/cappuccino): ')
         if selection == 'report':
             print('Water: ' + str(current_resources.get('water')) + "ml")
             print('Milk: ' + str(current_resources.get('milk')) + "ml")
             print('Coffee: ' + str(current_resources.get('coffee')) + "ml")
+        elif selection not in MENU:
+            print('What was that?')
         else:
-            result = compare(selection, current_resources)
+            result = stock(selection, current_resources)
             if result == 0:
                 pass
             elif result == 1:
@@ -25,37 +26,53 @@ def coffee():
                         current_resources[i] = current_resources[i] - MENU[selection]["ingredients"][i]
 
 
-def compare(drink, current_resources):
+def stock(drink, current_resources):
     drink = MENU[drink]["ingredients"]
+    rvalue = 0
     for i in drink:
         if current_resources[i] < drink[i]:
             print('Out Of Stock!')
-            return 0
+            rvalue = 0
     else:
-        return 1
+        rvalue = 1
+    return rvalue
 
 
 def check(drink, money):
     cost = MENU[drink]["cost"]
+    rvalue = ()
     if cost > money:
-        return 0
+        rvalue = 0
     elif money > cost:
+        rvalue = 1
         if money > cost and money != cost:
             change = money - cost
-            print('Here Is Your Change: {0}'.format(str(change)))
-        return 1
+            print('Here Is Your Change: ${0}'.format(str(change)))
+    return rvalue
 
 
 def coins():
     money = int()
-    quarters = input("How Many Quarters:")
-    money += (int(quarters) * 0.25)
-    dimes = input("How Many Dimes:")
-    money += (int(dimes) * 0.10)
-    nickles = input('How Many Nickles:')
-    money += (int(nickles) * 0.05)
-    pennies = input('How Many Pennies:')
-    money += (int(pennies) * 0.01)
+    try:
+        quarters = input("How Many Quarters:")
+        money += (int(quarters) * 0.25)
+    except ValueError:
+        print('What was that?')
+    try:
+        dimes = input("How Many Dimes:")
+        money += (int(dimes) * 0.10)
+    except ValueError:
+        print('What was that?')
+    try:
+        nickles = input('How Many Nickles:')
+        money += (int(nickles) * 0.05)
+    except ValueError:
+        print('What was that?')
+    try:
+        pennies = input('How Many Pennies:')
+        money += (int(pennies) * 0.01)
+    except ValueError:
+        print('What was that?')
     return money
 
 
@@ -90,5 +107,6 @@ resources = {
     "milk": 200,
     "coffee": 100,
 }
-coffee()
 
+if __name__ == "__main__":
+    coffee()
