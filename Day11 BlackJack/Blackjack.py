@@ -66,7 +66,7 @@ def Play():
     print('Dealers Final Hand ' + str(p2cards) + ' Dealers Final Score: ' + str(p2score))
     compare(p1cards, p2cards)
     
-while input('Want to play BlackJack? (y/n): ') == 'y':
+while input('Want to play Day11 BlackJack? (y/n): ') == 'y':
     subprocess.run(['clear'])
     Play()
 else:
