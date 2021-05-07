@@ -22,10 +22,7 @@ def tim_move():
 
 def clr_draw(rgb):
     sel = random.choice(range(29))
-    tim.fillcolor(rgb[sel])
-    tim.begin_fill()
-    tim.circle(20)
-    tim.end_fill()
+    tim.dot(50, rgb_list[sel])
 
 
 tim = Turtle()
@@ -33,7 +30,7 @@ screen = Screen()
 tim.shape('turtle')
 tim.penup()
 tim.goto(-300, 250)
-tim.speed(10)
+tim.speed(7)
 screen.colormode(255)
 rgb_list = rgb_gen()
 for _ in range(56):
