@@ -2,7 +2,7 @@ from turtle import Turtle, Screen
 import random
 screen = Screen()
 screen.setup(width=800, height=800)
-colors = ["red", 'blue', 'green', 'orange', 'purple']
+colors = ["red", 'blue', 'green', 'orange', 'purple', 'violet']
 
 
 def turtle_gen():
@@ -37,7 +37,7 @@ def race(turtle_dict):
 
 
 def main():
-    p_choice = screen.textinput(title='Choose A Racer', prompt='Red, Blue, Green, Orange, or Purple').lower()
+    p_choice = screen.textinput(title='Choose A Racer', prompt=colors).lower()
     winner = 0
     t_dict = turtle_gen()
     lineup(t_dict)
